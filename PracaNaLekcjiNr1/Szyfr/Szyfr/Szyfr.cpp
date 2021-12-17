@@ -8,6 +8,7 @@ using namespace std;
 
 
 string Cezar(string Slowo, int Przesuniecie = 0) {
+
     char alfabet[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
 
     if (Przesuniecie == 0) {
@@ -15,23 +16,22 @@ string Cezar(string Slowo, int Przesuniecie = 0) {
         cin >> Przesuniecie;
     }
 
-    string o = "";
+    string s = "";
 
     int a;
     if (Przesuniecie > 25 || Przesuniecie < 0) {
         return "Przesuniecie niepoprawne";
     }
+
     for (char& b : Slowo) {
-        a = int(b) + Przesuniecie;
-        b = a % ('z' + 1);
-        if (b > 'a' - 1) {
-            o += b;
-        }
-        else {
-            o += b + 'a';
+        for (int i = 0; i < sizeof(alfabet); i++) {
+            if (alfabet[i] == b) {
+                a = i + Przesuniecie;
+                s += alfabet[a % sizeof(alfabet)];
+            }
         }
     }
-    return o;
+    return s;
 }
 
 string Przestawienie(string Slowo) {
